@@ -1,0 +1,91 @@
+generator client {
+  provider     = "prisma-client"
+  output       = "../src/generated"
+  moduleFormat = "cjs"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+
+
+model User {
+  id           Int      @id @default(autoincrement())
+  email        String   @unique
+  passwordHash String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  refreshTokens RefreshToken[]
+}
+
+model RefreshToken {
+  id        Int       @id @default(autoincrement())
+  tokenHash String    @unique
+  expiresAt DateTime
+  revokedAt DateTime?
+  createdAt DateTime  @default(now())
+
+  user   User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId Int
+
+  @@index([userId])
+}
+
+model Review {
+  id        String   @id @default(uuid())
+  quote     Json // { "ru": "...", "en": "...", "de": "..." }
+  author    Json // { "ru": "...", "en": "...", "de": "..." }
+  rating    Int      @default(5)
+  source    String
+  link      String
+  order     Int      @default(0)
+  isVisible Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([order])
+}
+
+model Seminar {
+  id          Int      @id @default(autoincrement())
+  title       Json     // { "ru": "...", "en": "...", "de": "..." }
+  date        DateTime
+  location    Json     // { "ru": "...", "en": "...", "de": "..." }
+  link        String
+  logoLink    String
+  logoTitle   String
+  description Json     // { "ru": "...", "en": "...", "de": "..." }
+  images      String[]
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([order])
+}
+
+enum ArticleCategory {
+  implantology
+  chirurgy
+  accompany
+  different
+}
+
+model Article {
+  id        String          @id @default(uuid())
+  title     Json
+  subtitle  Json
+  excerpt   Json
+  category  ArticleCategory
+  readTime  String
+  color     String
+  slug      String          @unique
+  img       String?
+  content   Json            // Array of ArticleBlock
+  order     Int             @default(0)
+  createdAt DateTime        @default(now())
+  updatedAt DateTime        @updatedAt
+
+  @@index([order])
+}

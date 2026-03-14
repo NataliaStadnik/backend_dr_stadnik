@@ -1,0 +1,19 @@
+/*
+  Warnings:
+
+  - You are about to drop the `Flower` table. If the table is not empty, all the data it contains will be lost.
+  - You are about to drop the `RefreshToken` table. If the table is not empty, all the data it contains will be lost.
+  - You are about to drop the `User` table. If the table is not empty, all the data it contains will be lost.
+
+*/
+-- DropForeignKey
+ALTER TABLE "RefreshToken" DROP CONSTRAINT "RefreshToken_userId_fkey";
+
+-- DropTable
+DROP TABLE "Flower";
+
+-- DropTable
+DROP TABLE "RefreshToken";
+
+-- DropTable
+DROP TABLE "User";
