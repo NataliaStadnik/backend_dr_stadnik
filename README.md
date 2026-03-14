@@ -1,6 +1,6 @@
-# Flowers Store Backend API
+# Backend API for Dr. Stadnik's website
 
-This is the backend service for the Flowers Store application, built using the [Nest](https://github.com/nestjs/nest) framework. It provides robust RESTful APIs to handle authentication and content management.
+This is the backend service for Dr. Stadnik's website, built using the [Nest](https://github.com/nestjs/nest) framework. It provides robust RESTful APIs to handle authentication and content management.
 
 ## Features & Modules
 
