@@ -13,10 +13,7 @@ export class TokenCleanupService {
   async cleanupExpiredTokens() {
     const result = await this.prisma.refreshToken.deleteMany({
       where: {
-        OR: [
-          { expiresAt: { lt: new Date() } },
-          { revokedAt: { not: null } },
-        ],
+        OR: [{ expiresAt: { lt: new Date() } }, { revokedAt: { not: null } }],
       },
     });
     this.logger.log(`Token cleanup: removed ${result.count} stale tokens`);

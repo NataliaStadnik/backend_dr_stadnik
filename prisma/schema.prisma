@@ -8,8 +8,6 @@ datasource db {
   provider = "postgresql"
 }
 
-
-
 model User {
   id           Int      @id @default(autoincrement())
   email        String   @unique
@@ -50,13 +48,13 @@ model Review {
 
 model Seminar {
   id          Int      @id @default(autoincrement())
-  title       Json     // { "ru": "...", "en": "...", "de": "..." }
+  title       Json // { "ru": "...", "en": "...", "de": "..." }
   date        DateTime
-  location    Json     // { "ru": "...", "en": "...", "de": "..." }
+  location    Json // { "ru": "...", "en": "...", "de": "..." }
   link        String
   logoLink    String
   logoTitle   String
-  description Json     // { "ru": "...", "en": "...", "de": "..." }
+  description Json // { "ru": "...", "en": "...", "de": "..." }
   images      String[]
   order       Int      @default(0)
   createdAt   DateTime @default(now())
@@ -82,7 +80,7 @@ model Article {
   color     String
   slug      String          @unique
   img       String?
-  content   Json            // Array of ArticleBlock
+  content   Json // Array of ArticleBlock
   order     Int             @default(0)
   createdAt DateTime        @default(now())
   updatedAt DateTime        @updatedAt

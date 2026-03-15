@@ -46,7 +46,7 @@ export class AuthService {
     return result;
   }
 
-  private accessTtl() {
+  private accessTtl(): string {
     return this.config.get<string>('JWT_ACCESS_TTL') ?? '15m';
   }
 
@@ -63,6 +63,58 @@ export class AuthService {
     const ok = await bcrypt.compare(password, user.passwordHash);
     if (!ok) throw new UnauthorizedException('Invalid credentials');
 
+    return this.generateTokens(user);
+  }
+
+  async logout(refreshToken: string) {
+    const tokenHash = sha256(refreshToken);
+    const token = await this.prisma.refreshToken.findUnique({
+      where: { tokenHash },
+    });
+
+    // Если токена нет, или он уже отозван, или он просрочен —
+    // цель (сделать его невалидным) уже достигнута.
+    if (!token || token.revokedAt || new Date() > token.expiresAt) {
+      return { success: true };
+    }
+
+    // Обновляем только если токен был активен
+    await this.prisma.refreshToken.update({
+      where: { tokenHash },
+      data: { revokedAt: new Date() },
+    });
+
+    return { success: true };
+  }
+
+  async refresh(oldRefreshToken: string) {
+    const tokenHash = sha256(oldRefreshToken);
+
+    // 1. Ищем токен в базе
+    const tokenRecord = await this.prisma.refreshToken.findUnique({
+      where: { tokenHash },
+      include: { user: true }, // Чтобы получить данные пользователя
+    });
+
+    // 2. Проверки: существует ли, не отозван ли, не просрочен ли
+    if (
+      !tokenRecord ||
+      tokenRecord.revokedAt ||
+      new Date() > tokenRecord.expiresAt
+    ) {
+      throw new UnauthorizedException('Invalid or expired refresh token');
+    }
+
+    // 3. Удаляем или отзываем старый токен (Rotation)
+    // Лучше удалить, чтобы не копить мусор, или пометить revokedAt
+    await this.prisma.refreshToken.delete({
+      where: { id: tokenRecord.id },
+    });
+
+    return this.generateTokens(tokenRecord.user);
+  }
+
+  private async generateTokens(user: { id: number; email: string }) {
     const accessToken = await this.jwt.signAsync(
       { sub: user.id, email: user.email },
       {
@@ -93,22 +145,5 @@ export class AuthService {
       accessToken,
       refreshToken,
     };
-  }
-
-  async logout(refreshToken: string) {
-    const tokenHash = sha256(refreshToken);
-    const token = await this.prisma.refreshToken.findUnique({
-      where: { tokenHash },
-    });
-
-    if (!token) return { success: true };
-    if (token.revokedAt) return { success: true };
-
-    await this.prisma.refreshToken.update({
-      where: { tokenHash },
-      data: { revokedAt: new Date() },
-    });
-
-    return { success: true };
   }
 }
