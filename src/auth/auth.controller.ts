@@ -3,11 +3,14 @@ import { AuthService } from './auth.service';
 import { LoginDto } from './dto/login.dto';
 import { LogoutDto } from './dto/logout.dto';
 import { ApiOkResponse, ApiOperation, ApiResponse } from '@nestjs/swagger';
+import { Throttle } from '@nestjs/throttler';
+import { ONE_MINUTE_MS } from '../common/constants';
 
 @Controller('auth')
 export class AuthController {
   constructor(private readonly auth: AuthService) {}
 
+  @Throttle({ default: { ttl: ONE_MINUTE_MS, limit: 10 } })
   @Post('register')
   @ApiOperation({ summary: 'Registering a new user' })
   register(@Body() dto: LoginDto) {
@@ -15,6 +18,7 @@ export class AuthController {
     return this.auth.register(dto.email, dto.password);
   }
 
+  @Throttle({ default: { ttl: ONE_MINUTE_MS, limit: 10 } })
   @Post('login')
   @HttpCode(HttpStatus.OK) // Явно указываем 200 вместо стандартного 201 для POST
   @ApiOperation({

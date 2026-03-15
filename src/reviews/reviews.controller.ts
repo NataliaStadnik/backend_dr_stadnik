@@ -7,8 +7,11 @@ import {
   Body,
   Param,
   UseGuards,
+  UseInterceptors,
   Req,
 } from '@nestjs/common';
+import { CacheInterceptor, CacheTTL } from '@nestjs/cache-manager';
+import { ONE_MINUTE_MS } from '../common/constants';
 import {
   ApiTags,
   ApiOperation,
@@ -30,6 +33,8 @@ export class ReviewsController {
   constructor(private readonly reviewsService: ReviewsService) {}
 
   @UseGuards(OptionalJwtAuthGuard)
+  @UseInterceptors(CacheInterceptor)
+  @CacheTTL(ONE_MINUTE_MS)
   @Get()
   @ApiOperation({ summary: 'Get list of reviews' })
   @ApiOkResponse({

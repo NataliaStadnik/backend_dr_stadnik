@@ -8,7 +8,10 @@ import {
   Put,
   ParseIntPipe,
   UseGuards,
+  UseInterceptors,
 } from '@nestjs/common';
+import { CacheInterceptor, CacheTTL } from '@nestjs/cache-manager';
+import { ONE_MINUTE_MS } from '../common/constants';
 import { SeminarsService } from './seminars.service';
 import {
   CreateSeminarDto,
@@ -32,6 +35,8 @@ import { SeminarEntity } from './entities/seminar.entity';
 export class SeminarsController {
   constructor(private readonly seminarsService: SeminarsService) {}
 
+  @UseInterceptors(CacheInterceptor)
+  @CacheTTL(ONE_MINUTE_MS)
   @Get()
   @ApiOperation({ summary: 'Get list of seminars' })
   @ApiOkResponse({ description: 'The list of seminars has been successfully retrieved.', type: [SeminarEntity] })

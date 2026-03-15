@@ -7,7 +7,10 @@ import {
   Delete,
   Put,
   UseGuards,
+  UseInterceptors,
 } from '@nestjs/common';
+import { CacheInterceptor, CacheTTL } from '@nestjs/cache-manager';
+import { ONE_MINUTE_MS } from '../common/constants';
 import { ArticlesService } from './articles.service';
 import {
   CreateArticleDto,
@@ -31,6 +34,8 @@ import { ArticleEntity } from './entities/article.entity';
 export class ArticlesController {
   constructor(private readonly articlesService: ArticlesService) {}
 
+  @UseInterceptors(CacheInterceptor)
+  @CacheTTL(ONE_MINUTE_MS)
   @Get()
   @ApiOperation({ summary: 'Get list of articles' })
   @ApiOkResponse({ description: 'The list of articles has been successfully retrieved.', type: [ArticleEntity] })
