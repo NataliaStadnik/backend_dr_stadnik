@@ -14,6 +14,7 @@ export async function seedReviews(prisma: PrismaClient) {
       rating: 5,
       source: '14gsp.by',
       link: 'https://14gsp.by/о-нас/отзывы',
+      isVisible: true,
     },
     {
       quote: {
@@ -25,6 +26,7 @@ export async function seedReviews(prisma: PrismaClient) {
       rating: 4,
       source: 'slivki.by',
       link: 'https://www.slivki.by/lechenie-kariesa-minsk-skidka-stolichnayastomatologiya?page=3',
+      isVisible: true,
     },
     {
       quote: {
@@ -36,6 +38,7 @@ export async function seedReviews(prisma: PrismaClient) {
       rating: 5,
       source: 'otzovik.by',
       link: 'https://otzovik.by/places/stomatologicheskij-centr-vinir/',
+      isVisible: true,
     },
     {
       quote: {
@@ -51,6 +54,7 @@ export async function seedReviews(prisma: PrismaClient) {
       rating: 5,
       source: '14gsp.by',
       link: 'https://14gsp.by/о-нас/отзывы',
+      isVisible: true,
     },
     {
       quote: {
@@ -62,6 +66,7 @@ export async function seedReviews(prisma: PrismaClient) {
       rating: 5,
       source: '14gsp.by',
       link: 'https://14gsp.by/о-нас/отзывы',
+      isVisible: true,
     },
     {
       quote: {
@@ -73,6 +78,7 @@ export async function seedReviews(prisma: PrismaClient) {
       rating: 5,
       source: '14gsp.by',
       link: 'https://14gsp.by/о-нас/отзывы',
+      isVisible: true,
     },
     {
       quote: {
@@ -84,6 +90,7 @@ export async function seedReviews(prisma: PrismaClient) {
       rating: 5,
       source: 'slivki.by',
       link: 'https://www.slivki.by/lechenie-kariesa-minsk-skidka-stolichnayastomatologiya?page=3',
+      isVisible: true,
     },
     {
       quote: {
@@ -95,6 +102,7 @@ export async function seedReviews(prisma: PrismaClient) {
       rating: 5,
       source: 'slivki.by',
       link: 'https://www.slivki.by/lechenie-kariesa-minsk-skidka-stolichnayastomatologiya?page=3',
+      isVisible: true,
     },
     {
       quote: {
@@ -106,6 +114,7 @@ export async function seedReviews(prisma: PrismaClient) {
       rating: 5,
       source: 'yandex.by',
       link: 'https://yandex.by/maps/org/vinir/147988909737/reviews/?ll=27.485257%2C53.906468&z=13',
+      isVisible: true,
     },
     {
       quote: {
@@ -117,6 +126,7 @@ export async function seedReviews(prisma: PrismaClient) {
       rating: 5,
       source: 'infodoktor.by',
       link: 'https://www.infodoktor.by/otzyvy-o-klinikah/14-stomatologicheskaya-poliklinika-minska/#4142',
+      isVisible: true,
     },
     {
       quote: {
@@ -132,6 +142,7 @@ export async function seedReviews(prisma: PrismaClient) {
       rating: 5,
       source: 'yandex.by',
       link: 'https://yandex.by/maps/org/estetik_smayl/105917578680/reviews/?ll=27.519680%2C53.881093&z=14',
+      isVisible: true,
     },
     {
       quote: {
@@ -143,6 +154,7 @@ export async function seedReviews(prisma: PrismaClient) {
       rating: 4,
       source: '14gsp.by',
       link: 'https://14gsp.by/о-нас/отзывы',
+      isVisible: true,
     },
   ];
 

@@ -8,7 +8,7 @@ import {
   Param,
   UseGuards,
   UseInterceptors,
-  Req,
+  Patch,
 } from '@nestjs/common';
 import { CacheInterceptor, CacheTTL } from '@nestjs/cache-manager';
 import { ONE_MINUTE_MS } from '../common/constants';
@@ -24,26 +24,38 @@ import {
 import { ReviewsService } from './reviews.service';
 import { CreateReviewDto, ReorderReviewsDto } from './dto/reviews.dto';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
-import { OptionalJwtAuthGuard } from '../auth/guards/optional-jwt-auth.guard';
 import { ReviewEntity } from './entities/review.entity';
+import { UpdateReviewDto } from './dto/update-review.dto';
 
 @ApiTags('Reviews')
 @Controller('reviews')
 export class ReviewsController {
   constructor(private readonly reviewsService: ReviewsService) {}
 
-  @UseGuards(OptionalJwtAuthGuard)
   @UseInterceptors(CacheInterceptor)
   @CacheTTL(ONE_MINUTE_MS)
   @Get()
-  @ApiOperation({ summary: 'Get list of reviews' })
+  @ApiOperation({ summary: 'Get list of visible reviews (Public)' })
   @ApiOkResponse({
     description: 'The list of reviews has been successfully retrieved.',
     type: [ReviewEntity],
   })
-  findAll(@Req() req: any) {
-    const isAdmin = !!req.user;
-    return this.reviewsService.findAll(isAdmin);
+  findAllPublic() {
+    return this.reviewsService.findAll(false);
+  }
+
+  // --- АДМИНСКИЙ ЭНДПОИНТ ---
+  @ApiBearerAuth()
+  @ApiUnauthorizedResponse({
+    description: 'Refused to allow access without a valid token',
+  })
+  @UseGuards(JwtAuthGuard)
+  @Get('admin/all')
+  @ApiOperation({ summary: 'Get all reviews for administration' })
+  @ApiOkResponse({ type: [ReviewEntity] })
+  @ApiNotFoundResponse({ description: 'Review not found' })
+  findAllAdmin() {
+    return this.reviewsService.findAll(true);
   }
 
   @ApiBearerAuth()
@@ -90,14 +102,14 @@ export class ReviewsController {
     description: 'Refused to allow access without a valid token',
   })
   @UseGuards(JwtAuthGuard)
-  @Put(':id')
+  @Patch(':id')
   @ApiOperation({ summary: 'Update review' })
   @ApiOkResponse({
     description: 'The review has been successfully updated.',
     type: ReviewEntity,
   })
   @ApiNotFoundResponse({ description: 'Review not found' })
-  update(@Param('id') id: string, @Body() dto: CreateReviewDto) {
+  update(@Param('id') id: string, @Body() dto: UpdateReviewDto) {
     return this.reviewsService.update(id, dto);
   }
 
