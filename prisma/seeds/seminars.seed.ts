@@ -18,6 +18,7 @@ export async function seedSeminars(prisma: PrismaClient) {
         de: 'Grodno',
       },
       link: 'https://www.instagram.com/p/DUDiVTPjE9L/?igsh=MXJ1MHMzY3RrbHhoYg%3D%3D',
+      isVisible: true,
       logoLink:
         'https://res.cloudinary.com/dbzvwnxpw/image/upload/v1770051107/straumann_svwfzz.png',
       logoTitle: 'Strauman logotype',
@@ -44,6 +45,7 @@ export async function seedSeminars(prisma: PrismaClient) {
         de: 'Beratungszentrum MEGAGEN BELARUS, Minsk',
       },
       link: 'https://www.instagram.com/reel/DTe3hG_jKq0/?igsh=MW9wNXpndGtwYTV2eQ%3D%3D',
+      isVisible: true,
       logoLink:
         'https://res.cloudinary.com/dbzvwnxpw/image/upload/v1770051106/megagen_ahd53r.png',
       logoTitle: 'Megagen logotype',
@@ -70,6 +72,7 @@ export async function seedSeminars(prisma: PrismaClient) {
         de: 'Moskauer Kino, Pobediteley Ave. 13.',
       },
       link: 'https://easm.megagen.by',
+      isVisible: true,
       logoLink:
         'https://res.cloudinary.com/dbzvwnxpw/image/upload/v1770051106/megagen_ahd53r.png',
       logoTitle: 'Megagen logotype',
@@ -103,6 +106,7 @@ export async function seedSeminars(prisma: PrismaClient) {
         de: 'Minsk',
       },
       link: 'https://www.instagram.com/p/DQou7FbjLgy/?igsh=MXRxZmt3cGtnaGs0aw%3D%3D',
+      isVisible: true,
       logoLink:
         'https://res.cloudinary.com/dbzvwnxpw/image/upload/v1770051107/straumann_svwfzz.png',
       logoTitle: 'Strauman logotype',
@@ -132,6 +136,7 @@ export async function seedSeminars(prisma: PrismaClient) {
         de: 'Minsk',
       },
       link: 'https://www.instagram.com/p/DOvsHAiDD76/?igsh=aWp4amxtMnZwcTM5&img_index=1',
+      isVisible: true,
       logoLink:
         'https://res.cloudinary.com/dbzvwnxpw/image/upload/v1770051107/straumann_svwfzz.png',
       logoTitle: 'Strauman logotype',
@@ -158,6 +163,7 @@ export async function seedSeminars(prisma: PrismaClient) {
         de: 'Minsk',
       },
       link: '',
+      isVisible: true,
       logoLink:
         'https://res.cloudinary.com/dbzvwnxpw/image/upload/v1770051107/straumann_svwfzz.png',
       logoTitle: 'Strauman logotype',

@@ -527,10 +527,6 @@ export type EnumArticleCategoryFieldUpdateOperationsInput = {
   set?: $Enums.ArticleCategory
 }
 
-export type NullableStringFieldUpdateOperationsInput = {
-  set?: string | null
-}
-
 
 
 export type ArticleSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{

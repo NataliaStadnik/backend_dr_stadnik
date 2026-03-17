@@ -22,4 +22,17 @@ export class UsersService {
   findById(id: number) {
     return this.prisma.user.findUnique({ where: { id } });
   }
+
+  findAll() {
+    return this.prisma.user.findMany({
+      orderBy: { createdAt: 'desc' },
+    });
+  }
+
+  update(id: number, data: any) {
+    return this.prisma.user.update({
+      where: { id },
+      data,
+    });
+  }
 }

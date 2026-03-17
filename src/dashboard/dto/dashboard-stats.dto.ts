@@ -14,6 +14,12 @@ class CountStats {
 class UserStats {
   @ApiProperty({ example: 5 })
   total: number;
+
+  @ApiProperty({ example: 4 })
+  active: number;
+
+  @ApiProperty({ example: 1 })
+  deactivated: number;
 }
 
 export class DashboardStatsDto {

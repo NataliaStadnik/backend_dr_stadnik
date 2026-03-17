@@ -63,6 +63,10 @@ export class AuthService {
     const ok = await bcrypt.compare(password, user.passwordHash);
     if (!ok) throw new UnauthorizedException('Invalid credentials');
 
+    if (!user.isActive) {
+      throw new UnauthorizedException('User is deactivated');
+    }
+
     return this.generateTokens(user);
   }
 
@@ -111,6 +115,10 @@ export class AuthService {
       where: { id: tokenRecord.id },
     });
 
+    if (!tokenRecord.user.isActive) {
+      throw new UnauthorizedException('User is deactivated');
+    }
+
     return this.generateTokens(tokenRecord.user);
   }
 
@@ -144,6 +152,12 @@ export class AuthService {
     return {
       accessToken,
       refreshToken,
+      user: {
+        id: user.id,
+        email: user.email,
+        firstName: (user as any).firstName,
+        lastName: (user as any).lastName,
+      },
     };
   }
 }

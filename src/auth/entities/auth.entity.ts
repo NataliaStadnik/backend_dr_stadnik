@@ -12,4 +12,19 @@ export class AuthResponseEntity {
     description: 'The new Refresh Token (opaque string)',
   })
   refreshToken: string;
+
+  @ApiProperty({
+    example: {
+      id: 1,
+      email: 'user@example.com',
+      firstName: 'John',
+      lastName: 'Doe',
+    },
+  })
+  user: {
+    id: number;
+    email: string;
+    firstName: string | null;
+    lastName: string | null;
+  };
 }

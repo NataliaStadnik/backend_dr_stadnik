@@ -15,6 +15,7 @@ export class DashboardService {
       reviewCount,
       visibleReviewCount,
       userCount,
+      activeUserCount,
     ] = await Promise.all([
       this.prisma.article.count(),
       this.prisma.article.count({ where: { isVisible: true } }),
@@ -23,6 +24,7 @@ export class DashboardService {
       this.prisma.review.count(),
       this.prisma.review.count({ where: { isVisible: true } }),
       this.prisma.user.count(),
+      this.prisma.user.count({ where: { isActive: true } }),
     ]);
 
     return {
@@ -43,6 +45,8 @@ export class DashboardService {
       },
       users: {
         total: userCount,
+        active: activeUserCount,
+        deactivated: userCount - activeUserCount,
       },
     };
   }
