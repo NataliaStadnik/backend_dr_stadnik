@@ -12,6 +12,7 @@ import { ReviewsModule } from './reviews/reviews.module';
 import { SeminarsModule } from './seminars/seminars.module';
 import { ArticlesModule } from './articles/articles.module';
 import { HealthModule } from './health/health.module';
+import { DashboardModule } from './dashboard/dashboard.module';
 
 @Module({
   imports: [
@@ -39,6 +40,7 @@ import { HealthModule } from './health/health.module';
     SeminarsModule,
     ArticlesModule,
     HealthModule,
+    DashboardModule,
   ],
   controllers: [],
   providers: [PrismaService],

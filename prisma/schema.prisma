@@ -89,3 +89,12 @@ model Article {
 
   @@index([order])
 }
+
+model DashboardStats {
+  id        Int      @id @default(autoincrement())
+  articles  Json     // { "total": Int, "visible": Int, "hidden": Int }
+  seminars  Json     // { "total": Int, "visible": Int, "hidden": Int }
+  reviews   Json     // { "total": Int, "visible": Int, "hidden": Int }
+  users     Json     // { "total": Int }
+  createdAt DateTime @default(now())
+}

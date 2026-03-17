@@ -388,7 +388,8 @@ export const ModelName = {
   RefreshToken: 'RefreshToken',
   Review: 'Review',
   Seminar: 'Seminar',
-  Article: 'Article'
+  Article: 'Article',
+  DashboardStats: 'DashboardStats'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -404,7 +405,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "refreshToken" | "review" | "seminar" | "article"
+    modelProps: "user" | "refreshToken" | "review" | "seminar" | "article" | "dashboardStats"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -778,6 +779,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    DashboardStats: {
+      payload: Prisma.$DashboardStatsPayload<ExtArgs>
+      fields: Prisma.DashboardStatsFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.DashboardStatsFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DashboardStatsPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.DashboardStatsFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DashboardStatsPayload>
+        }
+        findFirst: {
+          args: Prisma.DashboardStatsFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DashboardStatsPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.DashboardStatsFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DashboardStatsPayload>
+        }
+        findMany: {
+          args: Prisma.DashboardStatsFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DashboardStatsPayload>[]
+        }
+        create: {
+          args: Prisma.DashboardStatsCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DashboardStatsPayload>
+        }
+        createMany: {
+          args: Prisma.DashboardStatsCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.DashboardStatsCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DashboardStatsPayload>[]
+        }
+        delete: {
+          args: Prisma.DashboardStatsDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DashboardStatsPayload>
+        }
+        update: {
+          args: Prisma.DashboardStatsUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DashboardStatsPayload>
+        }
+        deleteMany: {
+          args: Prisma.DashboardStatsDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.DashboardStatsUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.DashboardStatsUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DashboardStatsPayload>[]
+        }
+        upsert: {
+          args: Prisma.DashboardStatsUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DashboardStatsPayload>
+        }
+        aggregate: {
+          args: Prisma.DashboardStatsAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateDashboardStats>
+        }
+        groupBy: {
+          args: Prisma.DashboardStatsGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.DashboardStatsGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.DashboardStatsCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.DashboardStatsCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -893,6 +968,18 @@ export const ArticleScalarFieldEnum = {
 } as const
 
 export type ArticleScalarFieldEnum = (typeof ArticleScalarFieldEnum)[keyof typeof ArticleScalarFieldEnum]
+
+
+export const DashboardStatsScalarFieldEnum = {
+  id: 'id',
+  articles: 'articles',
+  seminars: 'seminars',
+  reviews: 'reviews',
+  users: 'users',
+  createdAt: 'createdAt'
+} as const
+
+export type DashboardStatsScalarFieldEnum = (typeof DashboardStatsScalarFieldEnum)[keyof typeof DashboardStatsScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -1131,6 +1218,7 @@ export type GlobalOmitConfig = {
   review?: Prisma.ReviewOmit
   seminar?: Prisma.SeminarOmit
   article?: Prisma.ArticleOmit
+  dashboardStats?: Prisma.DashboardStatsOmit
 }
 
 /* Types for Logging */

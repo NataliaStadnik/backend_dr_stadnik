@@ -64,3 +64,8 @@ export type Seminar = Prisma.SeminarModel
  * 
  */
 export type Article = Prisma.ArticleModel
+/**
+ * Model DashboardStats
+ * 
+ */
+export type DashboardStats = Prisma.DashboardStatsModel

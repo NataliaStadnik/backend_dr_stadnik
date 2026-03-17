@@ -55,7 +55,8 @@ export const ModelName = {
   RefreshToken: 'RefreshToken',
   Review: 'Review',
   Seminar: 'Seminar',
-  Article: 'Article'
+  Article: 'Article',
+  DashboardStats: 'DashboardStats'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -150,6 +151,18 @@ export const ArticleScalarFieldEnum = {
 } as const
 
 export type ArticleScalarFieldEnum = (typeof ArticleScalarFieldEnum)[keyof typeof ArticleScalarFieldEnum]
+
+
+export const DashboardStatsScalarFieldEnum = {
+  id: 'id',
+  articles: 'articles',
+  seminars: 'seminars',
+  reviews: 'reviews',
+  users: 'users',
+  createdAt: 'createdAt'
+} as const
+
+export type DashboardStatsScalarFieldEnum = (typeof DashboardStatsScalarFieldEnum)[keyof typeof DashboardStatsScalarFieldEnum]
 
 
 export const SortOrder = {
