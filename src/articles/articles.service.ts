@@ -6,8 +6,9 @@ import { CreateArticleDto, UpdateArticleDto } from './dto/article.dto';
 export class ArticlesService {
   constructor(private prisma: PrismaService) {}
 
-  async findAll() {
+  async findAll(isAdmin: boolean = false) {
     return this.prisma.article.findMany({
+      where: isAdmin ? undefined : { isVisible: true },
       orderBy: { order: 'asc' },
     });
   }
@@ -42,6 +43,7 @@ export class ArticlesService {
         img: createArticleDto.img,
         content: createArticleDto.content as any,
         order: createArticleDto.order,
+        isVisible: false,
       },
     });
   }

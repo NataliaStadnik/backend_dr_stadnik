@@ -254,6 +254,10 @@ export class CreateArticleDto {
   @IsNumber()
   @IsOptional()
   order?: number;
+
+  @ApiProperty({ required: false })
+  @IsOptional()
+  isVisible?: boolean;
 }
 
 export class UpdateArticleDto extends PartialType(CreateArticleDto) {}

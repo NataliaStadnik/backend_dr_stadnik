@@ -5,19 +5,15 @@ import {
   Body,
   Param,
   Delete,
-  Put,
   ParseIntPipe,
   UseGuards,
   UseInterceptors,
+  Patch,
 } from '@nestjs/common';
 import { CacheInterceptor, CacheTTL } from '@nestjs/cache-manager';
 import { ONE_MINUTE_MS } from '../common/constants';
 import { SeminarsService } from './seminars.service';
-import {
-  CreateSeminarDto,
-  ReorderSeminarsDto,
-  UpdateSeminarDto,
-} from './dto/seminar.dto';
+import { CreateSeminarDto, ReorderSeminarsDto } from './dto/seminar.dto';
 import {
   ApiBearerAuth,
   ApiTags,
@@ -29,6 +25,7 @@ import {
 } from '@nestjs/swagger';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { SeminarEntity } from './entities/seminar.entity';
+import { UpdateSeminarDto } from './dto/update-seminar.dto';
 
 @ApiTags('Seminars')
 @Controller('seminars')
@@ -38,37 +35,66 @@ export class SeminarsController {
   @UseInterceptors(CacheInterceptor)
   @CacheTTL(ONE_MINUTE_MS)
   @Get()
-  @ApiOperation({ summary: 'Get list of seminars' })
-  @ApiOkResponse({ description: 'The list of seminars has been successfully retrieved.', type: [SeminarEntity] })
-  findAll() {
-    return this.seminarsService.findAll();
+  @ApiOperation({ summary: 'Get list of seminars (Public)' })
+  @ApiOkResponse({
+    description: 'The list of seminars has been successfully retrieved.',
+    type: [SeminarEntity],
+  })
+  findAllPublic() {
+    return this.seminarsService.findAll(false);
+  }
+
+  // --- АДМИНСКИЙ ЭНДПОИНТ ---
+  @ApiBearerAuth()
+  @ApiUnauthorizedResponse({
+    description: 'Refused to allow access without a valid token',
+  })
+  @UseGuards(JwtAuthGuard)
+  @Get('admin/all')
+  @ApiOperation({ summary: 'Get all seminars for administration' })
+  @ApiOkResponse({ type: [SeminarEntity] })
+  @ApiNotFoundResponse({ description: 'Seminars not found' })
+  findAllAdmin() {
+    return this.seminarsService.findAll(true);
   }
 
   @ApiBearerAuth()
-  @ApiUnauthorizedResponse({ description: 'Refused to allow access without a valid token' })
+  @ApiUnauthorizedResponse({
+    description: 'Refused to allow access without a valid token',
+  })
   @UseGuards(JwtAuthGuard)
   @Get(':id')
   @ApiOperation({ summary: 'Get a single seminar by ID' })
-  @ApiOkResponse({ description: 'The seminar has been successfully retrieved.', type: SeminarEntity })
+  @ApiOkResponse({
+    description: 'The seminar has been successfully retrieved.',
+    type: SeminarEntity,
+  })
   @ApiNotFoundResponse({ description: 'Seminar not found' })
   findOne(@Param('id', ParseIntPipe) id: number) {
     return this.seminarsService.findOne(id);
   }
 
   @ApiBearerAuth()
-  @ApiUnauthorizedResponse({ description: 'Refused to allow access without a valid token' })
+  @ApiUnauthorizedResponse({
+    description: 'Refused to allow access without a valid token',
+  })
   @UseGuards(JwtAuthGuard)
   @Post()
   @ApiOperation({ summary: 'Create a seminar' })
-  @ApiCreatedResponse({ description: 'The seminar has been successfully created.', type: SeminarEntity })
+  @ApiCreatedResponse({
+    description: 'The seminar has been successfully created.',
+    type: SeminarEntity,
+  })
   create(@Body() createSeminarDto: CreateSeminarDto) {
     return this.seminarsService.create(createSeminarDto);
   }
 
   @ApiBearerAuth()
-  @ApiUnauthorizedResponse({ description: 'Refused to allow access without a valid token' })
+  @ApiUnauthorizedResponse({
+    description: 'Refused to allow access without a valid token',
+  })
   @UseGuards(JwtAuthGuard)
-  @Put('reorder')
+  @Patch('reorder')
   @ApiOperation({ summary: 'Change order of seminars' })
   @ApiOkResponse({ description: 'Order updated successfully' })
   reorder(@Body() reorderDto: ReorderSeminarsDto) {
@@ -76,11 +102,16 @@ export class SeminarsController {
   }
 
   @ApiBearerAuth()
-  @ApiUnauthorizedResponse({ description: 'Refused to allow access without a valid token' })
+  @ApiUnauthorizedResponse({
+    description: 'Refused to allow access without a valid token',
+  })
   @UseGuards(JwtAuthGuard)
-  @Put(':id')
+  @Patch(':id')
   @ApiOperation({ summary: 'Update a seminar' })
-  @ApiOkResponse({ description: 'The seminar has been successfully updated.', type: SeminarEntity })
+  @ApiOkResponse({
+    description: 'The seminar has been successfully updated.',
+    type: SeminarEntity,
+  })
   @ApiNotFoundResponse({ description: 'Seminar not found' })
   update(
     @Param('id', ParseIntPipe) id: number,
@@ -90,11 +121,16 @@ export class SeminarsController {
   }
 
   @ApiBearerAuth()
-  @ApiUnauthorizedResponse({ description: 'Refused to allow access without a valid token' })
+  @ApiUnauthorizedResponse({
+    description: 'Refused to allow access without a valid token',
+  })
   @UseGuards(JwtAuthGuard)
   @Delete(':id')
   @ApiOperation({ summary: 'Delete a seminar' })
-  @ApiOkResponse({ description: 'The seminar has been successfully deleted.', type: SeminarEntity })
+  @ApiOkResponse({
+    description: 'The seminar has been successfully deleted.',
+    type: SeminarEntity,
+  })
   @ApiNotFoundResponse({ description: 'Seminar not found' })
   remove(@Param('id', ParseIntPipe) id: number) {
     return this.seminarsService.remove(id);

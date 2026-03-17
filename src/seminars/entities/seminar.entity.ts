@@ -38,4 +38,7 @@ export class SeminarEntity implements Seminar {
 
   @ApiProperty()
   updatedAt: Date;
+
+  @ApiProperty({ example: true })
+  isVisible: boolean;
 }

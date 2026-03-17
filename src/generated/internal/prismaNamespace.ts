@@ -868,7 +868,8 @@ export const SeminarScalarFieldEnum = {
   images: 'images',
   order: 'order',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  isVisible: 'isVisible'
 } as const
 
 export type SeminarScalarFieldEnum = (typeof SeminarScalarFieldEnum)[keyof typeof SeminarScalarFieldEnum]
@@ -887,7 +888,8 @@ export const ArticleScalarFieldEnum = {
   content: 'content',
   order: 'order',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  isVisible: 'isVisible'
 } as const
 
 export type ArticleScalarFieldEnum = (typeof ArticleScalarFieldEnum)[keyof typeof ArticleScalarFieldEnum]

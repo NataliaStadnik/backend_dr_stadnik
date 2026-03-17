@@ -1,4 +1,4 @@
-import { ApiProperty, PartialType } from '@nestjs/swagger';
+import { ApiProperty } from '@nestjs/swagger';
 import {
   IsString,
   IsNumber,
@@ -7,6 +7,8 @@ import {
   ValidateNested,
   IsObject,
   IsNotEmpty,
+  IsBoolean,
+  IsOptional,
 } from 'class-validator';
 import { Type } from 'class-transformer';
 
@@ -72,10 +74,14 @@ export class CreateSeminarDto {
 
   @ApiProperty({ required: false })
   @IsNumber()
+  @IsOptional()
   order?: number;
-}
 
-export class UpdateSeminarDto extends PartialType(CreateSeminarDto) {}
+  @ApiProperty({ example: true, required: false })
+  @IsBoolean()
+  @IsOptional()
+  isVisible?: boolean;
+}
 
 export class ReorderSeminarsDto {
   @ApiProperty({ type: [Number] })

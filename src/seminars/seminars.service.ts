@@ -1,13 +1,15 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
-import { CreateSeminarDto, UpdateSeminarDto } from './dto/seminar.dto';
+import { CreateSeminarDto } from './dto/seminar.dto';
+import { UpdateSeminarDto } from './dto/update-seminar.dto';
 
 @Injectable()
 export class SeminarsService {
-  constructor(private prisma: PrismaService) {}
+  constructor(private prisma: PrismaService) { }
 
-  async findAll() {
+  async findAll(isAdmin: boolean = false) {
     return this.prisma.seminar.findMany({
+      where: isAdmin ? undefined : { isVisible: true },
       orderBy: { order: 'asc' },
     });
   }
@@ -23,7 +25,6 @@ export class SeminarsService {
   }
 
   async create(createSeminarDto: CreateSeminarDto) {
-    // If order is not provided, place it at the end
     if (createSeminarDto.order === undefined) {
       const lastSeminar = await this.prisma.seminar.findFirst({
         orderBy: { order: 'desc' },
@@ -42,6 +43,7 @@ export class SeminarsService {
         description: createSeminarDto.description as any,
         images: createSeminarDto.images,
         order: createSeminarDto.order,
+        isVisible: false,
       },
     });
   }

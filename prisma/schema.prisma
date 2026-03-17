@@ -59,6 +59,7 @@ model Seminar {
   order       Int      @default(0)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+  isVisible   Boolean  @default(false)
 
   @@index([order])
 }
@@ -84,6 +85,7 @@ model Article {
   order     Int             @default(0)
   createdAt DateTime        @default(now())
   updatedAt DateTime        @updatedAt
+  isVisible   Boolean         @default(false)
 
   @@index([order])
 }

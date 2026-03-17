@@ -5,7 +5,7 @@ import {
   Body,
   Param,
   Delete,
-  Put,
+  Patch,
   UseGuards,
   UseInterceptors,
 } from '@nestjs/common';
@@ -37,10 +37,26 @@ export class ArticlesController {
   @UseInterceptors(CacheInterceptor)
   @CacheTTL(ONE_MINUTE_MS)
   @Get()
-  @ApiOperation({ summary: 'Get list of articles' })
-  @ApiOkResponse({ description: 'The list of articles has been successfully retrieved.', type: [ArticleEntity] })
+  @ApiOperation({ summary: 'Get list of articles (Public)' })
+  @ApiOkResponse({
+    description: 'The list of articles has been successfully retrieved.',
+    type: [ArticleEntity],
+  })
   findAll() {
-    return this.articlesService.findAll();
+    return this.articlesService.findAll(false);
+  }
+
+  @ApiBearerAuth()
+  @ApiUnauthorizedResponse({
+    description: 'Refused to allow access without a valid token',
+  })
+  @UseGuards(JwtAuthGuard)
+  @Get('admin/all')
+  @ApiOperation({ summary: 'Get all articles for administration' })
+  @ApiOkResponse({ type: [ArticleEntity] })
+  @ApiNotFoundResponse({ description: 'Articles not found' })
+  findAllAdmin() {
+    return this.articlesService.findAll(true);
   }
 
   @ApiBearerAuth()
@@ -67,7 +83,7 @@ export class ArticlesController {
   @ApiBearerAuth()
   @ApiUnauthorizedResponse({ description: 'Refused to allow access without a valid token' })
   @UseGuards(JwtAuthGuard)
-  @Put('reorder')
+  @Patch('reorder')
   @ApiOperation({ summary: 'Change order of articles' })
   @ApiOkResponse({ description: 'Order updated successfully' })
   reorder(@Body() reorderDto: ReorderArticlesDto) {
@@ -77,7 +93,7 @@ export class ArticlesController {
   @ApiBearerAuth()
   @ApiUnauthorizedResponse({ description: 'Refused to allow access without a valid token' })
   @UseGuards(JwtAuthGuard)
-  @Put(':id')
+  @Patch(':id')
   @ApiOperation({ summary: 'Update an article' })
   @ApiOkResponse({ description: 'The article has been successfully updated.', type: ArticleEntity })
   @ApiNotFoundResponse({ description: 'Article not found' })

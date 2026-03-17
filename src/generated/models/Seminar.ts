@@ -45,6 +45,7 @@ export type SeminarMinAggregateOutputType = {
   order: number | null
   createdAt: Date | null
   updatedAt: Date | null
+  isVisible: boolean | null
 }
 
 export type SeminarMaxAggregateOutputType = {
@@ -56,6 +57,7 @@ export type SeminarMaxAggregateOutputType = {
   order: number | null
   createdAt: Date | null
   updatedAt: Date | null
+  isVisible: boolean | null
 }
 
 export type SeminarCountAggregateOutputType = {
@@ -71,6 +73,7 @@ export type SeminarCountAggregateOutputType = {
   order: number
   createdAt: number
   updatedAt: number
+  isVisible: number
   _all: number
 }
 
@@ -94,6 +97,7 @@ export type SeminarMinAggregateInputType = {
   order?: true
   createdAt?: true
   updatedAt?: true
+  isVisible?: true
 }
 
 export type SeminarMaxAggregateInputType = {
@@ -105,6 +109,7 @@ export type SeminarMaxAggregateInputType = {
   order?: true
   createdAt?: true
   updatedAt?: true
+  isVisible?: true
 }
 
 export type SeminarCountAggregateInputType = {
@@ -120,6 +125,7 @@ export type SeminarCountAggregateInputType = {
   order?: true
   createdAt?: true
   updatedAt?: true
+  isVisible?: true
   _all?: true
 }
 
@@ -222,6 +228,7 @@ export type SeminarGroupByOutputType = {
   order: number
   createdAt: Date
   updatedAt: Date
+  isVisible: boolean
   _count: SeminarCountAggregateOutputType | null
   _avg: SeminarAvgAggregateOutputType | null
   _sum: SeminarSumAggregateOutputType | null
@@ -260,6 +267,7 @@ export type SeminarWhereInput = {
   order?: Prisma.IntFilter<"Seminar"> | number
   createdAt?: Prisma.DateTimeFilter<"Seminar"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Seminar"> | Date | string
+  isVisible?: Prisma.BoolFilter<"Seminar"> | boolean
 }
 
 export type SeminarOrderByWithRelationInput = {
@@ -275,6 +283,7 @@ export type SeminarOrderByWithRelationInput = {
   order?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  isVisible?: Prisma.SortOrder
 }
 
 export type SeminarWhereUniqueInput = Prisma.AtLeast<{
@@ -293,6 +302,7 @@ export type SeminarWhereUniqueInput = Prisma.AtLeast<{
   order?: Prisma.IntFilter<"Seminar"> | number
   createdAt?: Prisma.DateTimeFilter<"Seminar"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Seminar"> | Date | string
+  isVisible?: Prisma.BoolFilter<"Seminar"> | boolean
 }, "id">
 
 export type SeminarOrderByWithAggregationInput = {
@@ -308,6 +318,7 @@ export type SeminarOrderByWithAggregationInput = {
   order?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  isVisible?: Prisma.SortOrder
   _count?: Prisma.SeminarCountOrderByAggregateInput
   _avg?: Prisma.SeminarAvgOrderByAggregateInput
   _max?: Prisma.SeminarMaxOrderByAggregateInput
@@ -331,6 +342,7 @@ export type SeminarScalarWhereWithAggregatesInput = {
   order?: Prisma.IntWithAggregatesFilter<"Seminar"> | number
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Seminar"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Seminar"> | Date | string
+  isVisible?: Prisma.BoolWithAggregatesFilter<"Seminar"> | boolean
 }
 
 export type SeminarCreateInput = {
@@ -345,6 +357,7 @@ export type SeminarCreateInput = {
   order?: number
   createdAt?: Date | string
   updatedAt?: Date | string
+  isVisible?: boolean
 }
 
 export type SeminarUncheckedCreateInput = {
@@ -360,6 +373,7 @@ export type SeminarUncheckedCreateInput = {
   order?: number
   createdAt?: Date | string
   updatedAt?: Date | string
+  isVisible?: boolean
 }
 
 export type SeminarUpdateInput = {
@@ -374,6 +388,7 @@ export type SeminarUpdateInput = {
   order?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isVisible?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type SeminarUncheckedUpdateInput = {
@@ -389,6 +404,7 @@ export type SeminarUncheckedUpdateInput = {
   order?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isVisible?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type SeminarCreateManyInput = {
@@ -404,6 +420,7 @@ export type SeminarCreateManyInput = {
   order?: number
   createdAt?: Date | string
   updatedAt?: Date | string
+  isVisible?: boolean
 }
 
 export type SeminarUpdateManyMutationInput = {
@@ -418,6 +435,7 @@ export type SeminarUpdateManyMutationInput = {
   order?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isVisible?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type SeminarUncheckedUpdateManyInput = {
@@ -433,6 +451,7 @@ export type SeminarUncheckedUpdateManyInput = {
   order?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isVisible?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type StringNullableListFilter<$PrismaModel = never> = {
@@ -456,6 +475,7 @@ export type SeminarCountOrderByAggregateInput = {
   order?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  isVisible?: Prisma.SortOrder
 }
 
 export type SeminarAvgOrderByAggregateInput = {
@@ -472,6 +492,7 @@ export type SeminarMaxOrderByAggregateInput = {
   order?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  isVisible?: Prisma.SortOrder
 }
 
 export type SeminarMinOrderByAggregateInput = {
@@ -483,6 +504,7 @@ export type SeminarMinOrderByAggregateInput = {
   order?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  isVisible?: Prisma.SortOrder
 }
 
 export type SeminarSumOrderByAggregateInput = {
@@ -514,6 +536,7 @@ export type SeminarSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   order?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  isVisible?: boolean
 }, ExtArgs["result"]["seminar"]>
 
 export type SeminarSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -529,6 +552,7 @@ export type SeminarSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   order?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  isVisible?: boolean
 }, ExtArgs["result"]["seminar"]>
 
 export type SeminarSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -544,6 +568,7 @@ export type SeminarSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   order?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  isVisible?: boolean
 }, ExtArgs["result"]["seminar"]>
 
 export type SeminarSelectScalar = {
@@ -559,9 +584,10 @@ export type SeminarSelectScalar = {
   order?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  isVisible?: boolean
 }
 
-export type SeminarOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "date" | "location" | "link" | "logoLink" | "logoTitle" | "description" | "images" | "order" | "createdAt" | "updatedAt", ExtArgs["result"]["seminar"]>
+export type SeminarOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "date" | "location" | "link" | "logoLink" | "logoTitle" | "description" | "images" | "order" | "createdAt" | "updatedAt" | "isVisible", ExtArgs["result"]["seminar"]>
 
 export type $SeminarPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Seminar"
@@ -579,6 +605,7 @@ export type $SeminarPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     order: number
     createdAt: Date
     updatedAt: Date
+    isVisible: boolean
   }, ExtArgs["result"]["seminar"]>
   composites: {}
 }
@@ -1014,6 +1041,7 @@ export interface SeminarFieldRefs {
   readonly order: Prisma.FieldRef<"Seminar", 'Int'>
   readonly createdAt: Prisma.FieldRef<"Seminar", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Seminar", 'DateTime'>
+  readonly isVisible: Prisma.FieldRef<"Seminar", 'Boolean'>
 }
     
 

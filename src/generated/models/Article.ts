@@ -44,6 +44,7 @@ export type ArticleMinAggregateOutputType = {
   order: number | null
   createdAt: Date | null
   updatedAt: Date | null
+  isVisible: boolean | null
 }
 
 export type ArticleMaxAggregateOutputType = {
@@ -56,6 +57,7 @@ export type ArticleMaxAggregateOutputType = {
   order: number | null
   createdAt: Date | null
   updatedAt: Date | null
+  isVisible: boolean | null
 }
 
 export type ArticleCountAggregateOutputType = {
@@ -72,6 +74,7 @@ export type ArticleCountAggregateOutputType = {
   order: number
   createdAt: number
   updatedAt: number
+  isVisible: number
   _all: number
 }
 
@@ -94,6 +97,7 @@ export type ArticleMinAggregateInputType = {
   order?: true
   createdAt?: true
   updatedAt?: true
+  isVisible?: true
 }
 
 export type ArticleMaxAggregateInputType = {
@@ -106,6 +110,7 @@ export type ArticleMaxAggregateInputType = {
   order?: true
   createdAt?: true
   updatedAt?: true
+  isVisible?: true
 }
 
 export type ArticleCountAggregateInputType = {
@@ -122,6 +127,7 @@ export type ArticleCountAggregateInputType = {
   order?: true
   createdAt?: true
   updatedAt?: true
+  isVisible?: true
   _all?: true
 }
 
@@ -225,6 +231,7 @@ export type ArticleGroupByOutputType = {
   order: number
   createdAt: Date
   updatedAt: Date
+  isVisible: boolean
   _count: ArticleCountAggregateOutputType | null
   _avg: ArticleAvgAggregateOutputType | null
   _sum: ArticleSumAggregateOutputType | null
@@ -264,6 +271,7 @@ export type ArticleWhereInput = {
   order?: Prisma.IntFilter<"Article"> | number
   createdAt?: Prisma.DateTimeFilter<"Article"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Article"> | Date | string
+  isVisible?: Prisma.BoolFilter<"Article"> | boolean
 }
 
 export type ArticleOrderByWithRelationInput = {
@@ -280,6 +288,7 @@ export type ArticleOrderByWithRelationInput = {
   order?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  isVisible?: Prisma.SortOrder
 }
 
 export type ArticleWhereUniqueInput = Prisma.AtLeast<{
@@ -299,6 +308,7 @@ export type ArticleWhereUniqueInput = Prisma.AtLeast<{
   order?: Prisma.IntFilter<"Article"> | number
   createdAt?: Prisma.DateTimeFilter<"Article"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Article"> | Date | string
+  isVisible?: Prisma.BoolFilter<"Article"> | boolean
 }, "id" | "slug">
 
 export type ArticleOrderByWithAggregationInput = {
@@ -315,6 +325,7 @@ export type ArticleOrderByWithAggregationInput = {
   order?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  isVisible?: Prisma.SortOrder
   _count?: Prisma.ArticleCountOrderByAggregateInput
   _avg?: Prisma.ArticleAvgOrderByAggregateInput
   _max?: Prisma.ArticleMaxOrderByAggregateInput
@@ -339,6 +350,7 @@ export type ArticleScalarWhereWithAggregatesInput = {
   order?: Prisma.IntWithAggregatesFilter<"Article"> | number
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Article"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Article"> | Date | string
+  isVisible?: Prisma.BoolWithAggregatesFilter<"Article"> | boolean
 }
 
 export type ArticleCreateInput = {
@@ -355,6 +367,7 @@ export type ArticleCreateInput = {
   order?: number
   createdAt?: Date | string
   updatedAt?: Date | string
+  isVisible?: boolean
 }
 
 export type ArticleUncheckedCreateInput = {
@@ -371,6 +384,7 @@ export type ArticleUncheckedCreateInput = {
   order?: number
   createdAt?: Date | string
   updatedAt?: Date | string
+  isVisible?: boolean
 }
 
 export type ArticleUpdateInput = {
@@ -387,6 +401,7 @@ export type ArticleUpdateInput = {
   order?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isVisible?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type ArticleUncheckedUpdateInput = {
@@ -403,6 +418,7 @@ export type ArticleUncheckedUpdateInput = {
   order?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isVisible?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type ArticleCreateManyInput = {
@@ -419,6 +435,7 @@ export type ArticleCreateManyInput = {
   order?: number
   createdAt?: Date | string
   updatedAt?: Date | string
+  isVisible?: boolean
 }
 
 export type ArticleUpdateManyMutationInput = {
@@ -435,6 +452,7 @@ export type ArticleUpdateManyMutationInput = {
   order?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isVisible?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type ArticleUncheckedUpdateManyInput = {
@@ -451,6 +469,7 @@ export type ArticleUncheckedUpdateManyInput = {
   order?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isVisible?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type ArticleCountOrderByAggregateInput = {
@@ -467,6 +486,7 @@ export type ArticleCountOrderByAggregateInput = {
   order?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  isVisible?: Prisma.SortOrder
 }
 
 export type ArticleAvgOrderByAggregateInput = {
@@ -483,6 +503,7 @@ export type ArticleMaxOrderByAggregateInput = {
   order?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  isVisible?: Prisma.SortOrder
 }
 
 export type ArticleMinOrderByAggregateInput = {
@@ -495,6 +516,7 @@ export type ArticleMinOrderByAggregateInput = {
   order?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  isVisible?: Prisma.SortOrder
 }
 
 export type ArticleSumOrderByAggregateInput = {
@@ -525,6 +547,7 @@ export type ArticleSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   order?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  isVisible?: boolean
 }, ExtArgs["result"]["article"]>
 
 export type ArticleSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -541,6 +564,7 @@ export type ArticleSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   order?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  isVisible?: boolean
 }, ExtArgs["result"]["article"]>
 
 export type ArticleSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -557,6 +581,7 @@ export type ArticleSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   order?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  isVisible?: boolean
 }, ExtArgs["result"]["article"]>
 
 export type ArticleSelectScalar = {
@@ -573,9 +598,10 @@ export type ArticleSelectScalar = {
   order?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  isVisible?: boolean
 }
 
-export type ArticleOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "subtitle" | "excerpt" | "category" | "readTime" | "color" | "slug" | "img" | "content" | "order" | "createdAt" | "updatedAt", ExtArgs["result"]["article"]>
+export type ArticleOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "subtitle" | "excerpt" | "category" | "readTime" | "color" | "slug" | "img" | "content" | "order" | "createdAt" | "updatedAt" | "isVisible", ExtArgs["result"]["article"]>
 
 export type $ArticlePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Article"
@@ -594,6 +620,7 @@ export type $ArticlePayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     order: number
     createdAt: Date
     updatedAt: Date
+    isVisible: boolean
   }, ExtArgs["result"]["article"]>
   composites: {}
 }
@@ -1030,6 +1057,7 @@ export interface ArticleFieldRefs {
   readonly order: Prisma.FieldRef<"Article", 'Int'>
   readonly createdAt: Prisma.FieldRef<"Article", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Article", 'DateTime'>
+  readonly isVisible: Prisma.FieldRef<"Article", 'Boolean'>
 }
     
 
